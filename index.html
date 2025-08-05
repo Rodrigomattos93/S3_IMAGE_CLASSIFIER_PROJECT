@@ -116,7 +116,11 @@
           });
 
           const data = await response.json();
-          alert("Resposta do servidor: " + JSON.stringify(data));
+
+          // Faz parse do campo 'body' para extrair a mensagem limpa
+          const message = JSON.parse(data.body);
+
+          alert(message);
         } catch (error) {
           alert("Erro ao enviar imagem: " + error.message);
         }
