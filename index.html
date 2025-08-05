@@ -7,9 +7,46 @@
 <body>
   <h1>Upload de Imagem</h1>
 
-<form action="https://n6vuhg21b7.execute-api.us-east-2.amazonaws.com/dev" method="POST" enctype="multipart/form-data">
-    <input type="file" name="image" accept="image/*" required />
-    <button type="submit">Enviar</button>
-  </form>
+  <input type="file" id="imageInput" accept="image/*" required />
+  <button onclick="enviarImagem()">Enviar</button>
+
+  <script>
+    async function enviarImagem() {
+      const input = document.getElementById('imageInput');
+      const file = input.files[0];
+      if (!file) {
+        alert('Selecione um arquivo primeiro!');
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        const base64Content = reader.result.split(',')[1];  // remove o cabeçalho "data:image/...;base64,"
+
+        const payload = {
+          file_content: base64Content,
+          object_name: file.name
+        };
+
+        try {
+          const response = await fetch("https://n6vuhg21b7.execute-api.us-east-2.amazonaws.com/dev", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await response.json();
+          alert("Resposta do servidor: " + data);
+        } catch (error) {
+          alert("Erro ao enviar imagem: " + error);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
+  </script>
 </body>
 </html>
