@@ -22,7 +22,7 @@
       const reader = new FileReader();
 
       reader.onloadend = async () => {
-        const base64Content = reader.result.split(',')[1];  // remove o cabeçalho "data:image/...;base64,"
+        const base64Content = reader.result.split(',')[1];
 
         const payload = {
           file_content: base64Content,
@@ -41,7 +41,7 @@
           const data = await response.json();
           alert("Resposta do servidor: " + data);
         } catch (error) {
-          alert("Erro ao enviar imagem: " + error);
+          alert("Erro ao enviar imagem: " + JSON.stringify(data));
         }
       };
 
