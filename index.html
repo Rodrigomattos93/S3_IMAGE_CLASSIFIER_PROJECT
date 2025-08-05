@@ -64,14 +64,9 @@
     button:hover {
       background-color: #005f99;
     }
-    /* Responsividade simples */
-    @media (max-width: 400px) {
-      main {
-        padding: 20px;
-      }
-      button, input[type="file"] {
-        font-size: 0.9em;
-      }
+    #result {
+      margin-top: 20px;
+      text-align: left;
     }
   </style>
 </head>
@@ -82,15 +77,18 @@
 
   <main>
     <h1>Upload de Imagem</h1>
-
     <input type="file" id="imageInput" accept="image/*" required />
     <button onclick="enviarImagem()">Enviar</button>
+    <div id="result"></div>
   </main>
 
   <script>
     async function enviarImagem() {
       const input = document.getElementById('imageInput');
       const file = input.files[0];
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = ''; // limpa resultado anterior
+
       if (!file) {
         alert('Selecione um arquivo primeiro!');
         return;
@@ -116,13 +114,14 @@
           });
 
           const data = await response.json();
+          const resposta = JSON.parse(data.body);
 
-          // Faz parse do campo 'body' para extrair a mensagem limpa
-          const message = JSON.parse(data.body);
-
-          alert(message);
+          resultDiv.innerHTML = `
+            <p><strong>${resposta.mensagem}</strong></p>
+            <p><strong>Labels:</strong> ${resposta.labels.join(', ')}</p>
+          `;
         } catch (error) {
-          alert("Erro ao enviar imagem: " + error.message);
+          resultDiv.innerHTML = `<p style="color: red;">Erro ao enviar imagem: ${error.message}</p>`;
         }
       };
 
