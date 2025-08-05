@@ -39,9 +39,9 @@
           });
 
           const data = await response.json();
-          alert("Resposta do servidor: " + data);
+          alert("Resposta do servidor: " + JSON.stringify(data));
         } catch (error) {
-          alert("Erro ao enviar imagem: " + JSON.stringify(data));
+          alert("Erro ao enviar imagem: " + error.message);
         }
       };
 
