@@ -8,7 +8,7 @@ def lambda_handler(event, context):
     print("Lambda iniciou")
 
     try:
-        # Nome do bucket e tabela vindos de variáveis de ambiente
+        # variaveis de ambiente na AWS
         bucket = os.environ['BUCKET_NAME']
         table_name = os.environ['DYNAMODB_TABLE']
         print(f"Bucket destino: {bucket}")
