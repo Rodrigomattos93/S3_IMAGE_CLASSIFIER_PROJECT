@@ -55,3 +55,7 @@ The solution demonstrates:
 - No hardcoded secrets – credentials and sensitive data are stored in **environment variables**.  
 
 ---
+
+## Proposed Improvement
+
+A potential enhancement for this project is implementing **Infrastructure as Code** using **Terraform** to provision and manage AWS and Azure resources.  
