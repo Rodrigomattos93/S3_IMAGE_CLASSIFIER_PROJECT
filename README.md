@@ -1,8 +1,10 @@
 # Image Upload and Classification Pipeline – AWS & Azure Integration
+[Presentation video link](https://www.loom.com/share/2fe7f71da89043b0b93a1ed2ebf1365f?sid=7dfb8190-74c3-41f7-9f71-eb669a09c83f)
 
 ## Overview
 This project implements a **serverless, multi-cloud image processing pipeline**.  
-Users can upload images through a **web page hosted on AWS Amplify**, which triggers a fully automated workflow to store, analyze, and back up the files using **AWS** and **Azure** services.  
+Users can upload images through a **web page hosted on AWS Amplify**, which triggers a fully automated workflow to store, analyze, and back up the files using **AWS** and **Azure** services. 
+
 
 The solution demonstrates:
 - Secure IAM configuration with the **principle of least privilege**
@@ -20,6 +22,8 @@ The solution demonstrates:
 1. **Frontend (AWS Amplify + GitHub)**  
    - HTML page hosted on AWS Amplify, connected to GitHub for automatic deployments.  
    - Includes an upload button for the user to submit an image.
+   ![](images/AWSAmplifySite.png)
+   [AWS Amplify site](https://main.d3jx11qcqyptkt.amplifyapp.com/)
 
 2. **API Gateway**  
    - REST API endpoint receives the uploaded image.  
